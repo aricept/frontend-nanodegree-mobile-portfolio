@@ -517,11 +517,12 @@ function updatePositions() {
     var timesToUpdatePosition = window.performance.getEntriesByName("measure_frame_duration");
     logAverageFrame(timesToUpdatePosition);
   }
-  requestAnimationFrame(updatePositions);
+
 }
 
 function updateScroll() {
-    scrollPos = document.body.scrollTop / 1250;
+  scrollPos = document.body.scrollTop / 1250;
+  requestAnimationFrame(updatePositions);
 }
 
 // runs updatePositions on scroll
