@@ -510,7 +510,6 @@ function updatePositions() {
     var phase = Math.sin(scrollPos + (i % 5));
     items[i].style.left = items[i].basicLeft + 100 * phase + 'px';
   }
-  animating = false;
 
   // User Timing API to the rescue again. Seriously, it's worth learning.
   // Super easy to create custom metrics.
@@ -523,16 +522,9 @@ function updatePositions() {
 
 }
 
-function animate() {
-  if (!animating) {
-    requestAnimationFrame(updatePositions);
-  }
-  animating = true;
-}
-
 function updateScroll() {
   scrollPos = document.body.scrollTop / 1250;
-  animate();
+  requestAnimationFrame(updatePositions);
 }
 
 // runs updatePositions on scroll
