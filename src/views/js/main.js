@@ -16,6 +16,9 @@ Cameron Pittman, Udacity Course Developer
 cameron *at* udacity *dot* com
 */
 
+var scrollPos = 0;
+var items;
+
 // As you may have realized, this website randomly generates pizzas.
 // Here are arrays of all possible pizza ingredients.
 var pizzaIngredients = {};
@@ -534,7 +537,7 @@ document.addEventListener('DOMContentLoaded', function() {
     if((i % cols) * s < maxwidth && Math.floor(i / cols) * s < maxheight) {
       var elem = document.createElement('img');
       elem.className = 'mover';
-      elem.src = "images/pizza.png";
+      elem.src = "images/pizzabg.png";
       elem.style.height = "100px";
       elem.style.width = "73.333px";
       elem.basicLeft = (i % cols) * s;
@@ -543,6 +546,5 @@ document.addEventListener('DOMContentLoaded', function() {
     }
   }
   items = document.getElementsByClassName('mover');
-  scrollPos = 0;
   updatePositions();
 });
