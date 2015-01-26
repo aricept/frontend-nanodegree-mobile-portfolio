@@ -524,7 +524,7 @@ function updatePositions() {
 
 function updateScroll() {
   scrollPos = document.body.scrollTop / 1250;
-  requestAnimationFrame(updatePositions);
+  updatePositions();
 }
 
 // runs updatePositions on scroll
