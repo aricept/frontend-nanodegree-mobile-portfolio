@@ -19,6 +19,7 @@ cameron *at* udacity *dot* com
 var scrollPos = 0;
 var animating = false;
 var items;
+var iLen;
 
 // As you may have realized, this website randomly generates pizzas.
 // Here are arrays of all possible pizza ingredients.
@@ -504,7 +505,6 @@ function logAverageFrame(times) {   // times is the array of User Timing measure
 // Moves the sliding background pizzas based on scroll position
 function updatePositions() {
   frame++;
-  var iLen = items.length;
   window.performance.mark("mark_start_frame");
   for (var i = 0; i < iLen; i++) {
     var phase = Math.sin(scrollPos + (i % 5));
@@ -557,5 +557,6 @@ document.addEventListener('DOMContentLoaded', function() {
     }
   }
   items = document.getElementsByClassName('mover');
+  iLen = items.length;
   updatePositions();
 });
