@@ -17,6 +17,7 @@ cameron *at* udacity *dot* com
 */
 
 var scrollPos = 0;
+var animating = false;
 var items;
 
 // As you may have realized, this website randomly generates pizzas.
@@ -503,11 +504,13 @@ function logAverageFrame(times) {   // times is the array of User Timing measure
 // Moves the sliding background pizzas based on scroll position
 function updatePositions() {
   frame++;
+  var iLen = items.length;
   window.performance.mark("mark_start_frame");
-  for (var i = 0; i < items.length; i++) {
+  for (var i = 0; i < iLen; i++) {
     var phase = Math.sin(scrollPos + (i % 5));
     items[i].style.left = items[i].basicLeft + 100 * phase + 'px';
   }
+  animating = false;
 
   // User Timing API to the rescue again. Seriously, it's worth learning.
   // Super easy to create custom metrics.
@@ -520,9 +523,16 @@ function updatePositions() {
 
 }
 
+function animate() {
+  if (!animating) {
+    requestAnimationFrame(updatePositions);
+  }
+  animating = true;
+}
+
 function updateScroll() {
   scrollPos = document.body.scrollTop / 1250;
-  requestAnimationFrame(updatePositions);
+  animate();
 }
 
 // runs updatePositions on scroll
