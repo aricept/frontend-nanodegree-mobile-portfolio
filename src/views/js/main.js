@@ -523,7 +523,7 @@ function animate() {
 
 function updateScroll() {
   scrollPos = document.body.scrollTop / 1250;
-  animate();
+  //animate();
 }
 
 // runs updatePositions on scroll
@@ -550,5 +550,5 @@ document.addEventListener('DOMContentLoaded', function() {
   items = document.getElementsByClassName('mover');
   iLen = items.length;
   updateScroll();
-  updatePositions;
+  updatePositions();
 });
