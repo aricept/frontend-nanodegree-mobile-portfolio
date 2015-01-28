@@ -444,7 +444,7 @@ var resizePizzas = function(size) {
     var windowwidth = document.getElementById('randomPizzas').offsetWidth;
     var dx = determineDx(currWidth, windowwidth, size);
     var newwidth = currWidth + dx + 'px';
-    for (var i = 0; i < rLen; i++) {
+    while (rLen--) {
       randPizzas[i].style.width = currWidth + dx +'px';
     }
   }
@@ -492,10 +492,9 @@ function logAverageFrame(times) {   // times is the array of User Timing measure
 // Moves the sliding background pizzas based on scroll position
 function updatePositions() {
   frame++;
-  newPos = scrollPos;
+  var newPos = scrollPos;
   var i = iLen;
   window.performance.mark('mark_start_frame');
-  //for (var i = 0; i < iLen; i++) {
   while(i--) {
     var phase = Math.sin(newPos + (i % 5));
     items[i].style.transform = 'translateX(' + 100 * phase + 'px)';
@@ -514,10 +513,8 @@ function updatePositions() {
 
 function animate() {
   if (!animating) {
-    console.log('Animating...');
     requestAnimationFrame(updatePositions);
   }
-  else {console.log('Not animating...');}
   animating = true;
 }
 
