@@ -509,7 +509,7 @@ function updatePositions() {
     var timesToUpdatePosition = window.performance.getEntriesByName('measure_frame_duration');
     logAverageFrame(timesToUpdatePosition);
   }
-  animating = false;
+  animating= false;
   animate();
 }
 
