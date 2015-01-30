@@ -408,6 +408,13 @@ var resizePizzas = function(size) {
   window.performance.mark('mark_start_resize');   // User Timing API function
 
   // Returns the size difference to change a pizza element from one size to another. Called by changePizzaSlices(size).
+
+  /*  Collapsed changeSliderLabel() functions within sizeSwitcher() - there was no need for 2 switches that would
+        both run EVERY time the slider was moved
+
+      Removed all layout properties from within determineDx() to within changePizzaSizes() to avoid
+        layout/paint/layout/paint cycles. */
+
   function determineDx (elem, windowwidth, size) {
     var oldwidth = elem;
     var oldsize = oldwidth / windowwidth;
@@ -437,6 +444,12 @@ var resizePizzas = function(size) {
   }
 
   // Iterates through pizza elements on the page and changes their widths
+
+  /*  Moved all unchanging variables outside of the loop.  Reduced the number of times the array has to be crawled
+        and layouts triggered by feeding the array length (which won't change during the loop) to a variable outside
+        the loop, and getting layout specific information ONCE from the 0th member of the array.  Paired the reading
+        offsetWidth properties to prevent multiple layout operations.*/
+
   function changePizzaSizes(size) {
     var randPizzas = document.getElementsByClassName('randomPizzaContainer');
     var rLen = randPizzas.length;
@@ -444,9 +457,11 @@ var resizePizzas = function(size) {
     var windowwidth = document.getElementById('randomPizzas').offsetWidth;
     var dx = determineDx(currWidth, windowwidth, size);
     var newwidth = currWidth + dx + 'px';
-    while (rLen--) {
-      randPizzas[i].style.width = currWidth + dx +'px';
-    }
+    requestAnimationFrame(function() {
+      while (rLen--) {
+          randPizzas[rLen].style.width = newwidth;
+      }
+    });
   }
 
   changePizzaSizes(size);
@@ -490,6 +505,11 @@ function logAverageFrame(times) {   // times is the array of User Timing measure
 // https://www.igvita.com/slides/2012/devtools-tips-and-tricks/jank-demo.html
 
 // Moves the sliding background pizzas based on scroll position
+
+/*  Moved declaration of some of the variables outside of the function entirely; this function gets called a LOT
+      and we don't need to rebuild and count the array members every time.  Changed actual animation technique
+      from style.left to style.transform = translateX(), which doesn't cause layout reflow - precious milliseconds! */
+
 function updatePositions() {
   animating = true;
   frame++;
@@ -508,14 +528,20 @@ function updatePositions() {
     var timesToUpdatePosition = window.performance.getEntriesByName('measure_frame_duration');
     logAverageFrame(timesToUpdatePosition);
   }
-  animating= false;
+  animating = false;
 }
+
+/*  The following function checks if the browser is currently animating, and if so, does nothing.  This prevents
+      lots of frames from just piling up in case the scroll is faster than the browser. Using requestAnimationFrame
+      to allow the browser to schedule the paints when needed. */
 
 function animate() {
   if (!animating) {
     requestAnimationFrame(updatePositions);
   }
 }
+
+/*  Decoupling the animation from the scroll to prevent overloading the browser with animation requests */
 
 function updateScroll() {
   scrollPos = document.body.scrollTop / 1250;
@@ -526,6 +552,11 @@ function updateScroll() {
 window.addEventListener('scroll', updateScroll);
 
 // Generates the sliding pizzas when the page loads.
+
+/*  Limited pizza generation to the visible screen area, minimizing the number of reads, layouts, and paints needed.
+      Switched the background images (all of them actually) to WebP to reduce size.  Moved the creation of the items
+      and items.length variables here since they are unchanging.  */
+
 document.addEventListener('DOMContentLoaded', function() {
   var cols = 8;
   var s = 256;
