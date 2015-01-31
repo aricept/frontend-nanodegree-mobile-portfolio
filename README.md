@@ -2,6 +2,7 @@
 ####Rendering and Performance Optimizations
 
 ###Table of Contents
+1.[Objectives](#objectives)
 1. [How to Test](#test)
 2. [Tools Used](#tools)
 3. [Resources Used](#resources)
@@ -13,6 +14,13 @@
         * [resizePizzas](#mainresize)
         * [updatePositions](#mainupdate)
 5. [Failed Attempts](#failed)
+
+<a name="objectives"></a>
+##Objectives
+###PageSpeed Insights
+Target: 90+ for Mobile and Desktop
+
+Achievement:
 
 <a name="test"></a>
 ## How to Test
