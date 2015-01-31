@@ -51,7 +51,8 @@ jsPerf.com
 
 * I review many, many performance benchmarks here, especially surrounding querySelector and querySelectorAll, two methods I'd never seen previously; and various types of loops.
 
-##Process & Changes <a name="process"></a>
+<a name="process"></a>
+##Process & Changes
 I was actually almost done with the project when I discovered Gulp, and wanted to see how different that would make my workflow, so I started all over.  Love it!
 
 Then I got so frustrated with the pizzas I started all over AGAIN.
