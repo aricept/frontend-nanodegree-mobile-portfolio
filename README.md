@@ -2,7 +2,7 @@
 ####Rendering and Performance Optimizations
 
 ###Table of Contents
-1.[Objectives](#objectives)
+1. [Objectives](#objectives)
 1. [How to Test](#test)
 2. [Tools Used](#tools)
 3. [Resources Used](#resources)
