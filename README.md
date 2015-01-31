@@ -22,22 +22,22 @@ Target: 90+ for Mobile and Desktop
 
 Achievement:
 
-![Mobile PageSpeed Score](http://aricept.github.io/img/psi-mobile.png)
-![Desktop PageSpeed Score](http://aricept.github.io/img/psi-desktop)
+![Mobile PageSpeed Score](http://aricept.github.io/frontend-nanodegree-mobile-portfolio/img/psi-mobile.png)
+![Desktop PageSpeed Score](http://aricept.github.io/frontend-nanodegree-mobile-portfolio/img/psi-desktop)
 
 ###Pizza Resizes
 Target: < 5ms
 
 Achievement:
 
-![Pizza Resize](http://aricept.github.io/img/resize.png)
+![Pizza Resize](http://aricept.github.io/frontend-nanodegree-mobile-portfolio/img/resize.png)
 
 ###Frames Per Second
 Target: 60 FPS
 
 Achievement:
 
-![FPS](http://aricept.github.io/img/FPS.png)
+![FPS](http://aricept.github.io/frontend-nanodegree-mobile-portfolio/img/FPS.png)
 
 <a name="test"></a>
 ## How to Test
