@@ -510,8 +510,8 @@ function logAverageFrame(times) {   // times is the array of User Timing measure
 
 function updatePositions() {
   frame++;
-  var items = document.getElementsByClassName('mover');
-  var iLen = items.length;
+  animating = false;
+  iLen = items.length;
   window.performance.mark('mark_start_frame');
   for (i = 0; i < iLen; i++) {
     var phase = Math.sin(scrollPos + (i % 5));
@@ -526,7 +526,6 @@ function updatePositions() {
     var timesToUpdatePosition = window.performance.getEntriesByName('measure_frame_duration');
     logAverageFrame(timesToUpdatePosition);
   }
-  animating = false;
 }
 
 /*  The following function checks if the browser is currently animating, and if so, does nothing.  This prevents
@@ -573,5 +572,6 @@ document.addEventListener('DOMContentLoaded', function() {
       document.getElementById('movingPizzas1').appendChild(elem);
     }
   }
+  items = document.getElementsByClassName('mover');
   updateScroll();
 });
