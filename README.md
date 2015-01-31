@@ -71,7 +71,8 @@ I changed all of the `tag .class` CSS selectors to just `.class` selectors, and 
 
 During these changes, I worked in the /src folder, and had a gulp.watch task running. Every time I saved style.css or index.html, it would run a task that minified then inlined the CSS, and then piped it to another plugin than minified the HTML, and saved it to the primary folder.  Gulp is awesome.
 
-###pizza.html <a name="pizza"></a>
+<a name="pizza"></a>
+###pizza.html
 I modified my Gulp setup, since I wouldn't be inlining anything in this page.  HTML and JS were minified on save.
 
 I started by resizing and compressing pizzeria.jpg in ImageMagick again for the new page.  I based its new dimensions off of the size of the image in a maximized Chrome on my laptop.  Also using IM, I converted pizza.png to pizza.webp, drastically reducing the filesize, and thus performance overhead for redraws.  I created a resized pizza-bg.webp for the background movers.
