@@ -23,7 +23,7 @@ Target: 90+ for Mobile and Desktop
 Achievement:
 
 ![Mobile PageSpeed Score](http://aricept.github.io/frontend-nanodegree-mobile-portfolio/img/psi-mobile.png)
-![Desktop PageSpeed Score](http://aricept.github.io/frontend-nanodegree-mobile-portfolio/img/psi-desktop)
+![Desktop PageSpeed Score](http://aricept.github.io/frontend-nanodegree-mobile-portfolio/img/psi-desktop.png)
 
 ###Pizza Resizes
 Target: < 5ms
