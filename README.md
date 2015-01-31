@@ -14,14 +14,16 @@
         * [updatePositions](#mainupdate)
 5. [Failed Attempts](#failed)
 
-## How to Test <a name="test"></a>
+<a name="test"></a>
+## How to Test
 [The portfolio](http://aricept.github.io/frontend-nanodegree-mobile-portfolio) is hosted on GitHub Pages.
 
 Jump straight to [analyze it on PageSpeed Insights](https://developers.google.com/speed/pagespeed/insights/?url=http%3A%2F%2Faricept.github.io%2Ffrontend-nanodegree-mobile-portfolio&tab=mobile).
 
 Scroll to your heart's content at [Cam's Pizza Parlor](http://aricept.github.io/frontend-nanodegree-mobile-portfolio/views/pizza.html).
 
-## Tools Used <a name="tools"></a>
+<a name="tools"></a>
+## Tools Used
 **[Gulp.js](http://gulpjs.com)** -- used to automate processes and tasks. Plugins used:
 
 * [gulp-uglify](https://github.com/terinjokes/gulp-uglify): minifies JavaScript. Primarily used for the pizza project.
@@ -31,7 +33,8 @@ Scroll to your heart's content at [Cam's Pizza Parlor](http://aricept.github.io/
 
 **[ImageMagick](http://www.imagemagick.com)** -- used to resize images and convert formats.
 
-## Resources Used <a name="resources"><a>
+<a name="resources"><a>
+## Resources Used
 HTML5 Rocks - [Leaner, Meaner, Faster Animations with requestAnimationFrame](http://www.html5rocks.com/en/tutorials/speed/animations/)
 
 * I had already decided I was going to utilize rAF, but this article helped solidify *how* I would use it.
@@ -55,7 +58,8 @@ Then I got so frustrated with the pizzas I started all over AGAIN.
 
 And this time I feel like I nailed it.
 
-###index.html <a name="index"></a>
+<a name="index"></a>
+###index.html
 With the amazing gulp-inline-source plugin (seriously, just adding the attribute `inline` in the HTML and the plugin inlines that resource, CSS or JS) , I inlined all of the CSS.  None of the JS was essential for layout, so I `async`ed all of it.  I moved the inlined JS that was already there into a separate file to decrease payload, and moved all CSS and JS references to the end of the page.
 
 The pizzeria.jpg being used was a massive multi-megapixel image, so I resized and compressed it with ImageMagick, and moved the new pizzeria-thumb.jpg into the root /img folder.  (I tried using a Gulp plugin called gulp-inline-resize, which allowed you to add a width or height modifier to the HTML and it would dynamically create a resized/minified image with a new filename, and change the file reference in the output file, but that was a bust.)  I used gulp-imagemin to minify the rest.
@@ -71,12 +75,15 @@ I modified my Gulp setup, since I wouldn't be inlining anything in this page.  H
 
 I started by resizing and compressing pizzeria.jpg in ImageMagick again for the new page.  I based its new dimensions off of the size of the image in a maximized Chrome on my laptop.  Also using IM, I converted pizza.png to pizza.webp, drastically reducing the filesize, and thus performance overhead for redraws.  I created a resized pizza-bg.webp for the background movers.
 
-### main.js <a name="main"></a>
+<a name="main"></a>
+### main.js
 
-####Global changes <a name="mainglobal></a>
+<a name="mainglobal"></a>
+####Global changes
  I changed all uses of `querySelector` to `getElementById`, and all uses of `querySelectorAll` to `getElementsByClassName`.  With large numbers of elements, like we have, the `getElement(s)` methods are more performant.
 
-####resizePizzas() <a name="mainresize"></a>
+<a name="mainresize"></a>
+####resizePizzas()
 Optimized loop in three major ways:
 
 * Collapsed `changeSliderLabel()` and `sizeSwitcher()` to avoid running through 2 switch statements
@@ -112,8 +119,8 @@ function changePizzaSizes(size) {
     });
   }
 ```
-
-####updatePositions() <a name="mainupdate"></a>
+<a name="mainupdate"></a>
+####updatePositions()
 
 Many of the same changes as resizing the pizzas:
 
@@ -123,7 +130,8 @@ Many of the same changes as resizing the pizzas:
 * Moved the animation technique from `style.left` to `style.transform = translateX()`, which does not affect layout, removing a costly step from the render process.
 * Limited pizza creation to the visible screen only, minimizing the number of elements we need to animate - this isn't done in this function, but has a huge impact in how it runs.
 
-##Failed Attempts<a name="failed">:thumbsdown:</a>
+<a name="failed">:thumbsdown:</a>
+##Failed Attempts
 
 Things I tried that were not successful:
 
