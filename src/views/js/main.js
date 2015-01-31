@@ -509,6 +509,7 @@ function logAverageFrame(times) {   // times is the array of User Timing measure
       from style.left to style.transform = translateX(), which doesn't cause layout reflow - precious milliseconds! */
 
 function updatePositions() {
+  animating = false;
   frame++;
   iLen = items.length;
   window.performance.mark('mark_start_frame');
@@ -516,7 +517,6 @@ function updatePositions() {
     var phase = Math.sin(scrollPos + (i % 5));
     items[i].style.transform = 'translateX(' + 100 * phase + 'px)';
   }
-  animating = false;
 
   // User Timing API to the rescue again. Seriously, it's worth learning.
   // Super easy to create custom metrics.
