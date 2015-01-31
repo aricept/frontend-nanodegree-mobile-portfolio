@@ -47,6 +47,8 @@ Jump straight to [analyze it on PageSpeed Insights](https://developers.google.co
 
 Scroll to your heart's content at [Cam's Pizza Parlor](http://aricept.github.io/frontend-nanodegree-mobile-portfolio/views/pizza.html).
 
+Review the development code in the [/src directory](https://github.com/aricept/frontend-nanodegree-mobile-portfolio/tree/master/src)
+
 <a name="tools"></a>
 ## Tools Used
 **[Gulp.js](http://gulpjs.com)** -- used to automate processes and tasks. Plugins used:
