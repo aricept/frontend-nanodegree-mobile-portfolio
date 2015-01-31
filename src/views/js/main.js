@@ -509,7 +509,7 @@ function logAverageFrame(times) {   // times is the array of User Timing measure
       from style.left to style.transform = translateX(), which doesn't cause layout reflow - precious milliseconds! */
 
 function updatePositions() {
-  animating = false;
+  animating = true;
   frame++;
   iLen = items.length;
   window.performance.mark('mark_start_frame');
@@ -526,6 +526,7 @@ function updatePositions() {
     var timesToUpdatePosition = window.performance.getEntriesByName('measure_frame_duration');
     logAverageFrame(timesToUpdatePosition);
   }
+  animating = false;
 }
 
 /*  The following function checks if the browser is currently animating, and if so, does nothing.  This prevents
@@ -536,7 +537,7 @@ function animate() {
   if (!animating) {
     requestAnimationFrame(updatePositions);
   }
-  animating = true;
+
 }
 
 /*  Decoupling the animation from the scroll to prevent overloading the browser with animation requests */
