@@ -132,8 +132,8 @@ Many of the same changes as resizing the pizzas:
 * Moved the animation technique from `style.left` to `style.transform = translateX()`, which does not affect layout, removing a costly step from the render process.
 * Limited pizza creation to the visible screen only, minimizing the number of elements we need to animate - this isn't done in this function, but has a huge impact in how it runs.
 
-<a name="failed">:thumbsdown:</a>
-##Failed Attempts
+<a name="failed"></a>
+##Failed Attempts :thumbsdown:
 
 Things I tried that were not successful:
 
