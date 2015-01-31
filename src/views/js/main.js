@@ -18,8 +18,6 @@ cameron *at* udacity *dot* com
 
 var scrollPos = 0;
 var animating = false;
-var items;
-var iLen;
 
 // As you may have realized, this website randomly generates pizzas.
 // Here are arrays of all possible pizza ingredients.
@@ -458,8 +456,8 @@ var resizePizzas = function(size) {
     var dx = determineDx(currWidth, windowwidth, size);
     var newwidth = currWidth + dx + 'px';
     requestAnimationFrame(function() {
-      while (rLen--) {
-          randPizzas[rLen].style.width = newwidth;
+      for (var i = 0; i < rLen; i++) {
+          randPizzas[i].style.width = newwidth;
       }
     });
   }
@@ -511,11 +509,11 @@ function logAverageFrame(times) {   // times is the array of User Timing measure
       from style.left to style.transform = translateX(), which doesn't cause layout reflow - precious milliseconds! */
 
 function updatePositions() {
-  animating = true;
   frame++;
-  var i = iLen;
+  var items = document.getElementsByClassName('mover');
+  var iLen = items.length;
   window.performance.mark('mark_start_frame');
-  while(i--) {
+  for (i = 0; i < iLen; i++) {
     var phase = Math.sin(scrollPos + (i % 5));
     items[i].style.transform = 'translateX(' + 100 * phase + 'px)';
   }
@@ -539,6 +537,7 @@ function animate() {
   if (!animating) {
     requestAnimationFrame(updatePositions);
   }
+  animating = true;
 }
 
 /*  Decoupling the animation from the scroll to prevent overloading the browser with animation requests */
@@ -574,7 +573,5 @@ document.addEventListener('DOMContentLoaded', function() {
       document.getElementById('movingPizzas1').appendChild(elem);
     }
   }
-  items = document.getElementsByClassName('mover');
-  iLen = items.length;
   updateScroll();
 });
