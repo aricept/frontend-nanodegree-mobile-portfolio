@@ -509,7 +509,6 @@ function logAverageFrame(times) {   // times is the array of User Timing measure
       from style.left to style.transform = translateX(), which doesn't cause layout reflow - precious milliseconds! */
 
 function updatePositions() {
-  animating = true;
   frame++;
   iLen = items.length;
   window.performance.mark('mark_start_frame');
@@ -537,7 +536,7 @@ function animate() {
   if (!animating) {
     requestAnimationFrame(updatePositions);
   }
-
+  animating = true;
 }
 
 /*  Decoupling the animation from the scroll to prevent overloading the browser with animation requests */
